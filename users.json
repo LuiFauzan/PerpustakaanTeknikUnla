@@ -1,0 +1,264 @@
+{
+    "users": [
+        {
+            "id": "1",
+            "npm": "41155050220082",
+            "name": "Lui Fauzan",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 1
+        },
+        {
+            "id": "2",
+            "npm": "41155050220054",
+            "name": "Anjas Lesmana",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "3",
+            "npm": "41155050220046",
+            "name": "Daud Wakur",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "4",
+            "npm": "41155050220050",
+            "name": "Adhitya Aldi Maulana",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "5",
+            "npm": "41155050220066",
+            "name": "Putra Fata Difa Ramadhan ",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "6",
+            "npm": "41155050220069",
+            "name": "Maulana Yusuf ",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "7",
+            "npm": "41155050220052",
+            "name": "Dian Ardiansah ",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 1,
+            "is_super_admin": 0
+        },
+        {
+            "id": "8",
+            "npm": "41155050220073",
+            "name": "Bhakti jaelani mirabudi",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "9",
+            "npm": "41155050220063",
+            "name": "Evreki wan refanja ",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "10",
+            "npm": "41155050220048",
+            "name": "Aditya Perbawa",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "11",
+            "npm": "41155050220081",
+            "name": "Hasbial Jamil Mardia Putra",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "12",
+            "npm": "41155050220053",
+            "name": "Rini Rashifah",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "13",
+            "npm": "41155050220057",
+            "name": "Yuga Azka Al Razzak",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 1,
+            "is_super_admin": 0
+        },
+        {
+            "id": "14",
+            "npm": "41155050220055",
+            "name": "Reihan Azshar Ismail",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "15",
+            "npm": "41155050220080",
+            "name": "Nasrul alfhy Nurohmatulloh",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "16",
+            "npm": "41155050220060",
+            "name": "Rizki Ramdani",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "17",
+            "npm": "41155050220056",
+            "name": "Juan novriandi ramadhan",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "18",
+            "npm": "41155050220049",
+            "name": "Muhammad Dzaki khobar rizqi",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "19",
+            "npm": "41155050220061",
+            "name": "Dadi Bilawa",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "20",
+            "npm": "41155050220058",
+            "name": "Rayhan Sofian",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "21",
+            "npm": "41155050220075",
+            "name": "Muhamad Bayu",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 1,
+            "is_super_admin": 0
+        },
+        {
+            "id": "22",
+            "npm": "41155050220083",
+            "name": "Ariel daffa mahardika",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "23",
+            "npm": "41155050220068",
+            "name": "Akbar zaelani",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "24",
+            "npm": "41155050220062",
+            "name": "Naufal Firdaus Kautsar",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "24",
+            "npm": "41155050220084",
+            "name": "Qori Rahma Naomi Muharam",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        },
+        {
+            "id": "25",
+            "npm": "41155050220079",
+            "name": "Lira Serli Selviana",
+            "password": "password",
+            "prodi": "Informatika",
+            "photo": "default.png",
+            "is_admin": 0,
+            "is_super_admin": 0
+        }
+    ]
+}
