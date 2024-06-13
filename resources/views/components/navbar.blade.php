@@ -47,40 +47,44 @@
                 @else 
                 <a href="#" class="px-4 py-2 bg-white text-green-600 border mx-4 text-sm border-white rounded-md hover:bg-slate-200" data-target="#modal-login"><i class="fa-solid fa-right-to-bracket"></i> MASUK</a>
                 <!-- Modal Login -->
-                <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-950 rounded-lg shadow-lg p-8 max-w-md w-full text-center z-50 hidden" id="modal-login">
-                    <!-- Modal Content -->
-                    <h2 class="text-3xl font-bold mb-4 text-white">Login</h2>
-                    <form method="post" action="/login">
-                        @csrf
-                        <div class="mb-4">
-                            <label for="website-admin" class="block mb-2 text-start text-sm text-white font-semibold">UserID</label>
-                            <div class="flex">
-                                <span class="inline-flex items-center px-3 text-sm text-white bg-green-500 border border-e-0 border-gray-300 rounded-s-md ">
-                                    <i class="fa-solid fa-id-card"></i>
-                                </span>
-                                <input type="text" required id="website-admin" class="@error('npm') invalid:border-red-600 @enderror rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-green-500 focus:border-green-500 block flex-1 min-w-0 w-full text-sm p-2.5  " name="npm" placeholder="UserId">
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <label for="website-admin" class="block mb-2 text-start text-sm text-white font-semibold">Password</label>
-                            <div class="flex">
-                                <span class="inline-flex items-center px-3 text-sm text-white bg-green-500 border border-e-0 border-gray-300 rounded-s-md ">
-                                    <i class="fa-solid fa-key"></i>
-                                </span>
-                                <input type="password" required id="website-admin" name="password" class="@error('password') invalid:border-red-600 @enderror rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-green-500 focus:border-green-500 block flex-1 min-w-0 w-full text-sm p-2.5 " placeholder="Password">
-                            </div>
-                        </div>
-                    
-                        <button type="submit" class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
-                    </form>
-                    <div>
-                        <a href="#" class="text-green-500 float-right underline">Forgot Password?</a>
-                    </div>
-                    <button class="absolute top-0 right-0 mr-4 mt-2 text-white hover:text-gray-300 focus:outline-none" id="modal-login-close"><i class="fa-solid fa-circle-xmark"></i></button>
-                </div>
-                @endauth
-                <!-- Modal Background -->
-                <div class="fixed top-0 left-0 w-full h-full bg-green-950 bg-opacity-75 z-40 hidden" id="modal-login-bg"></div>
+<div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-950 rounded-lg shadow-lg p-8 max-w-md w-full text-center z-50 hidden" id="modal-login">
+    <!-- Modal Content -->
+    <h2 class="text-3xl font-bold mb-4 text-white">Login</h2>
+    <form method="post" action="/login">
+        @csrf
+        <div class="mb-4">
+            <label for="userid" class="block mb-2 text-start text-sm text-white font-semibold">UserID</label>
+            <div class="flex">
+                <span class="inline-flex items-center px-3 text-sm text-white bg-green-500 border border-e-0 border-gray-300 rounded-s-md">
+                    <i class="fa-solid fa-id-card"></i>
+                </span>
+                <input type="text" required id="userid" class="@error('npm') invalid:border-red-600 @enderror rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-green-500 focus:border-green-500 block flex-1 min-w-0 w-full text-sm p-2.5" name="npm" placeholder="UserId">
+            </div>
+        </div>
+        <div class="mb-4">
+            <label for="password" class="block mb-2 text-start text-sm text-white font-semibold">Password</label>
+            <div class="flex">
+                <span class="inline-flex items-center px-3 text-sm text-white bg-green-500 border border-e-0 border-gray-300 rounded-s-md">
+                    <i class="fa-solid fa-key"></i>
+                </span>
+                <input type="password" required id="password" name="password" class="@error('password') invalid:border-red-600 @enderror rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-green-500 focus:border-green-500 block flex-1 min-w-0 w-full text-sm p-2.5" placeholder="Password">
+                <span class="inline-flex items-center px-3 text-sm text-white bg-green-500 border border-s-0 border-gray-300 rounded-e-md cursor-pointer" id="toggle-password">
+                    <i class="fa-solid fa-eye" id="toggle-password-icon"></i>
+                </span>
+            </div>
+        </div>
+    
+        <button type="submit" class="bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login</button>
+    </form>
+    <div>
+        <a href="#" class="text-green-500 float-right underline">Forgot Password?</a>
+    </div>
+    <button class="absolute top-0 right-0 mr-4 mt-2 text-white hover:text-gray-300 focus:outline-none" id="modal-login-close"><i class="fa-solid fa-circle-xmark"></i></button>
+</div>
+@endauth
+<!-- Modal Background -->
+<div class="fixed top-0 left-0 w-full h-full bg-green-950 bg-opacity-75 z-40 hidden" id="modal-login-bg"></div>
+
         </div>
         </div>
         {{-- End Dekstop --}}
@@ -172,4 +176,37 @@
         </div>
         {{--End Mobile  --}}
     </div>
+
 </nav>
+<script>
+    document.getElementById('toggle-password').addEventListener('click', function () {
+        const passwordInput = document.getElementById('password');
+        const passwordIcon = document.getElementById('toggle-password-icon');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordIcon.classList.remove('fa-eye');
+            passwordIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            passwordIcon.classList.remove('fa-eye-slash');
+            passwordIcon.classList.add('fa-eye');
+        }
+    });
+
+    // Modal handling script
+    document.getElementById('modal-login-close').addEventListener('click', function () {
+        document.getElementById('modal-login').classList.add('hidden');
+        document.getElementById('modal-login-bg').classList.add('hidden');
+    });
+
+    document.getElementById('modal-login-bg').addEventListener('click', function () {
+        document.getElementById('modal-login').classList.add('hidden');
+        document.getElementById('modal-login-bg').classList.add('hidden');
+    });
+
+    // Assuming you have a button to open the modal
+    document.getElementById('open-login-modal').addEventListener('click', function () {
+        document.getElementById('modal-login').classList.remove('hidden');
+        document.getElementById('modal-login-bg').classList.remove('hidden');
+    });
+</script>

@@ -18,7 +18,7 @@ class isSuperAdmin
         if(auth()->user()->is_super_admin){
             return $next($request);
         }
-        abort(403);
+        abort(403,'Heiiii Mau Kemana');
         
     }
 }

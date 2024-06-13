@@ -22,7 +22,7 @@ class LoginController extends Controller
             if(Auth::user()->is_admin){
                 return redirect()->intended('/dashboard')->with('success','Login Success Sebagai Admin');
             }elseif(Auth::user()->is_super_admin){
-                return redirect()->intended('/dashboard')->with('success','Login Success Sebagai Manager');
+                return redirect()->intended('/dashboard/su/')->with('success','Login Success Sebagai Manager');
             }
             return redirect()->intended('/')->with('success','Login Success');
         };

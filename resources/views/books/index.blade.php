@@ -47,5 +47,6 @@
             @endforelse
            </tbody>
         </table>
+        {{ $books->links('vendor.pagination.custom') }}
     </div>
 </x-layout-admin>

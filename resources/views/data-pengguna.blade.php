@@ -39,5 +39,6 @@
             @endforelse
            </tbody>
         </table>
+        {{ $users->links('vendor.pagination.custom') }}
     </div>
 </x-layout-admin>

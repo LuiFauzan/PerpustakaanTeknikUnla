@@ -18,6 +18,6 @@ class isAdmin
         if(auth()->check() && auth()->user()->is_admin){
             return $next($request);
         }
-        abort(403);
+        abort(403, 'Heiiii Mau Kemana');
     }
 }

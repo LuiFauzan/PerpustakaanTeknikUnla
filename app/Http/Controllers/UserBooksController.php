@@ -24,7 +24,7 @@ class UserBooksController extends Controller
         
         return view('gallery-books', [
             'title' => 'Gallery Buku',
-            'books' => $books->paginate(12)
+            'books' => $books->paginate(9)
         ]);
     }
     // public function store(Request $request){

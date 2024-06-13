@@ -19,7 +19,7 @@ class checkLogin
         if(Auth::check()){
             return $next($request);
         }
-        abort(404);
+        abort(403,'Anda Harus Login Terlebih Dahulu');
         
     }
 }
