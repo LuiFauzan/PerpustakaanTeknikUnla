@@ -25,17 +25,37 @@ class UserBorrowController extends Controller
         ]);
     }
     
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+        // Validasi input
         $request->validate([
-            'user_id'=> 'required|exists:users,id',
-            'book_id'=> 'required|exists:books,id',
+            'user_id' => 'required|exists:users,id',
+            'book_id' => 'required|exists:books,id',
             'tanggal_peminjaman' => 'required|date',
-            'tanggal_pengembalian' => 'required|date',
+            'tanggal_pengembalian' => 'required|date|after:tanggal_peminjaman',
             'status' => 'required',
+        ], [
+            'tanggal_pengembalian.after' => 'Tanggal pengembalian harus setelah tanggal peminjaman.',
+            'user_id.exists' => 'User tidak ditemukan atau tidak valid.',
+            'book_id.exists' => 'Buku tidak ditemukan atau tidak valid.',
         ]);
-    Borrowing::create($request->all());
-    return redirect()->back()->with('success','Booking success silahkan tunggu konfirmasi dari admin! ');
+    
+        // Cek apakah user masih meminjam buku
+        $existingBorrowing = Borrowing::where('user_id', $request->user_id)
+            ->whereIn('status', ['Sedang Dipinjam', 'Booking'])
+            ->exists();
+    
+        if ($existingBorrowing) {
+            return redirect()->back()->with('error', 'Anda masih meminjam atau memesan buku lain, silakan kembalikan buku tersebut sebelum meminjam yang baru.');
+        }
+    
+        // Jika tidak ada, lanjutkan dengan pembuatan peminjaman baru
+        Borrowing::create($request->all());
+        return redirect()->back()->with('success', 'Booking sukses, silakan tunggu konfirmasi dari admin!');
     }
+    
+    
+    
     public function pengembalian($id) {
         // Temukan peminjaman berdasarkan ID
         $borrowing = Borrowing::findOrFail($id);

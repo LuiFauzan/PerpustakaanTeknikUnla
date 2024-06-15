@@ -14,8 +14,8 @@ class UsersController extends Controller
 {
     //
     public function index(){
-        $users = User::all();
-        return view('data-pengguna',['title'=>'Halaman Admin - Data Pengguna'],compact('users'));
+        $users = User::latest()->paginate(10);
+        return view('data-pengguna',['title'=>'Halaman Admin - Data Pengguna','users'=>$users]);
     }
     public function formprofile($id){
         $user = User::findOrFail($id);

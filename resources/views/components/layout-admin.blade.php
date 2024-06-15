@@ -10,40 +10,60 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://kit.fontawesome.com/46db5e6224.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
-        .ace{
+        .ace {
             width: 100%;
         }
-      
-    </style> 
+    </style>
 </head>
-<body >
+<body>
     <x-sidebar-admin></x-sidebar-admin>
-    
     <main class="mt-24 h-screen pl-96">
-        @if (session()->has('success'))
-        <div 
-            x-data="{ showSuccess: true }" 
-            x-show="showSuccess" 
-            x-init="setTimeout(() => showSuccess = false, 5000)" 
-            class="absolute left-0 right-0 bg-green-800 border w-96 mx-auto text-white rounded-md p-4 shadow-lg font-bold flex text-center items-center justify-between"
-        >
-            <div>
-                <i class="fa-solid fa-circle-check"></i>
-                <span class="font-semibold">{{ session('success') }}</span>
-            </div>
-            <button type="button" @click="showSuccess = false" class="text-2xl">&times;</button>
-        </div>
-    @endif
-        <div class=" float-end w-full p-6">
+        <div class="w-full p-6">
             <div class="bg-gray-100 p-4 rounded-lg">
                 {{-- Content Here --}}
                 {{ $slot }}
             </div>
         </div>
     </main>
-    <script src="js/script.js">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cek apakah ada pesan sukses dari session
+            let successMessage = '{{ Session::get('success') }}';
+            if (successMessage) {
+                Swal.fire({
+                    title: 'Sukses!',
+                    text: successMessage,
+                    icon: 'success',
+                    timer: 5000,
+                    timerProgressBar: true,
+                    allowOutsideClick: true,  // Mengizinkan klik di luar popup
+                    allowEscapeKey: true,     // Mengizinkan tombol escape
+                    didDestroy: () => {
+                        // Pemulihan atau pembersihan tambahan jika diperlukan
+                    }
+                });
+            }
+
+            // Cek apakah ada pesan error dari session
+            let errorMessage = '{{ Session::get('error') }}';
+            if (errorMessage) {
+                Swal.fire({
+                    title: 'Oops..',
+                    text: errorMessage,
+                    icon: 'error',
+                    timer: 5000,
+                    timerProgressBar: true,
+                    allowOutsideClick: true,  // Mengizinkan klik di luar popup
+                    allowEscapeKey: true,     // Mengizinkan tombol escape
+                    didDestroy: () => {
+                        // Pemulihan atau pembersihan tambahan jika diperlukan
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>

@@ -17,6 +17,7 @@ use App\Http\Controllers\DashboardUsersController;
 use App\Http\Controllers\DashboardBorrowController;
 use App\Http\Controllers\DashboardPengembalianController;
 use PHPUnit\Framework\Attributes\Group;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 // Route::get('/', function () {
 //     return view('home',['title'=>'Home Page']);
@@ -31,6 +32,7 @@ use PHPUnit\Framework\Attributes\Group;
 
 Route::middleware(['checkLogin'])->group(function(){
     Route::post('/books', [UserBorrowController::class, 'store']);
+    Route::get('/books/single-book/{id}', [UserBorrowController::class, 'create']);
     Route::delete('/books/single-book/{id}', [UserBorrowController::class, 'destroy']);
     Route::put('/books/single-book/{id}', [UserBorrowController::class, 'pengembalian']);
     // Users Setting
@@ -45,6 +47,11 @@ Route::middleware(['checkLogin'])->group(function(){
         Route::get('/dashboard/data-pinjaman', [DashboardBorrowController::class,'index']);
         Route::put('/dashboard/data-pinjaman/{id}', [DashboardBorrowController::class,'update']);
         Route::get('/dashboard/data-pengguna', [UsersController::class,'index']);
+        Route::get('/dashboard/users/create', [DashboardUsersController::class,'create']);
+        Route::post('/dashboard/users/create', [DashboardUsersController::class,'store'])->name('user.store');
+        Route::get('/dashboard/users/edit/{id}', [DashboardUsersController::class,'edit'])->name('user.edit');
+        Route::put('/dashboard/users/edit/{id}', [DashboardUsersController::class,'update'])->name('user.update');
+        Route::delete('/dashboard/data-pengguna/{id}', [DashboardUsersController::class,'destroy']);
         Route::get('/dashboard/konfirmasi-pengembalian',[DashboardPengembalianController::class,'index']);
         Route::put('/dashboard/konfirmasi-pengembalian/{id}',[DashboardPengembalianController::class,'update']);
         // rourtes kelola buku
@@ -52,7 +59,6 @@ Route::middleware(['checkLogin'])->group(function(){
         Route::get('/dashboard/books/create', [BooksController::class, 'create'])->name('books.create');
         Route::post('/dashboard/books', [BooksController::class, 'store']);
         Route::get('/dashboard/books/detail/{id}', [BooksController::class, 'show'])->name('books.show');
-        Route::get('/books/single-book/{id}', [UserBorrowController::class, 'create']);
         Route::get('/dashboard/books/{id}/edit', [BooksController::class, 'edit'])->name('books.edit');
         Route::put('/dashboard/books/{id}', [BooksController::class, 'update'])->name('books.update');
         Route::delete('/dashboard/books/{id}', [BooksController::class, 'destroy'])->name('books.delete');

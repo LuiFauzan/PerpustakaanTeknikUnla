@@ -23,10 +23,10 @@
                 <td colspan="2">
                     <div class="flex justify-center">
                         <a href="/dashboard/users/{{ $book->id }}/edit" class="py-2 px-4  text-black rounded-md"><i class="fa-solid fa-file-pen"></i></a>
-                        <form action="/dashboard/users/{{ $book->id }}" method="post">
+                        <form action="/dashboard/data-pengguna/{{ $book->id }}" method="post">
                             @csrf
                             @method('delete')
-                            <button type="submit" onclick="return confirm('Anda Yakin Mau Menghapus Buku Ini?')" class="py-2 px-4 text-black rounded-md"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" class="deleteButton py-2 px-4 text-black rounded-md"><i class="fa-solid fa-trash"></i></button>
                         </form>
                     </div>
                 </td>
@@ -41,4 +41,28 @@
         </table>
         {{ $users->links('vendor.pagination.custom') }}
     </div>
+    <script>
+       document.addEventListener('DOMContentLoaded', function () {
+                const confirmButtons = document.querySelectorAll('.deleteButton');
+                confirmButtons.forEach(button => {
+                    button.addEventListener('click', function (event) {
+                        event.preventDefault();
+                        const form = this.closest('form');
+                        Swal.fire({
+                            title: 'Apakah Anda yakin?',
+                            text: "Data ini akan dihapus dan tidak bisa dikembalikan!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Ya, hapus!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                form.submit();
+                            }
+                        });
+                    });
+                });
+       });
+    </script>
 </x-layout-admin>

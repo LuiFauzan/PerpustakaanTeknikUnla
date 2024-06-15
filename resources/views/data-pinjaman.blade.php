@@ -1,67 +1,72 @@
 <x-layout-admin>
     <x-slot:title>{{ $title }}</x-slot:title>
-    <div>
+    <div class="px-6 py-4">
         <h1 class="text-2xl font-bold text-center mb-8">Data Peminjaman</h1>
-        <table class="table-fixed border-collapse border border-green-500 w-full text-center mt-6">
-           <thead class=" bg-green-800 text-white font-semibold">
-            <tr>
-                <td >No</td>
-                <td>NPM</td>
-                <td>Nama</td>
-                <td>Judul Buku</td>
-                <td>Tanggal Minjam</td>
-                <td>Tanggal Pengembalian</td>
-                <td>Status</td>
-                <td>Konfirmasi</td>
-            </tr>
-           </thead>
-           <tbody>
-            @forelse ($pinjam as $p)
-            <tr class="border border-gray-600">
-                <td >{{ $loop->iteration }}</td>
-                <td>{{ $p->user->npm }}</td>
-                <td>{{ $p->user->name }}</td>
-                <td>{{ $p->book->judul }}</td>
-                <td>{{ $p->tanggal_peminjaman }}</td>
-                <td>{{ $p->tanggal_pengembalian }}</td>
-                <td>{{ $p->status }}</td>
-                <td>
-                    <form id="confirmForm" action="/dashboard/data-pinjaman/{{ $p->id }}" method="post">
-                        @csrf
-                        @method('PUT')
-                        <input type="hidden" name="status" value="Sedang Dipinjam">
-                        @if ($p && $p->status == 'Sedang Dipinjam')
-                            <button type="button" id="confirmButton" disabled class="px-4 py-1 bg-green-600 text-white ">Disetujui</button>   
-                        @else
-                            <button type="button" id="confirmButton" class="px-4 py-1 bg-green-800 text-white hover:bg-green-600">Setujui</button>   
-                        @endif
-                        
-                    </form>
-                </td>
-            </tr> 
-            @empty
-            <td class="text-center bg-red-600 text-white font-bold" colspan="7">
-                Data Belum Ada
-            </td>
-            @endforelse
-            
-           </tbody>
-        </table>
+        <div class="overflow-x-auto">
+            <table class="table-fixed border-collapse border border-green-500 w-[200%] text-center mt-6">
+                <thead class="bg-green-800 text-white font-semibold">
+                    <tr>
+                        <th class="py-2 px-4">No</th>
+                        <th class="py-2 px-4">NPM</th>
+                        <th class="py-2 px-4">Nama</th>
+                        <th class="py-2 px-4">Judul Buku</th>
+                        <th class="py-2 px-4">Tanggal Pinjam</th>
+                        <th class="py-2 px-4">Tanggal Pengembalian</th>
+                        <th class="py-2 px-4">Status</th>
+                        <th class="py-2 px-4">Konfirmasi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($pinjam as $p)
+                    <tr class="border border-gray-600">
+                        <td class="py-2 px-4">{{ $loop->iteration }}</td>
+                        <td class="py-2 px-4">{{ $p->user->npm }}</td>
+                        <td class="py-2 px-4">{{ $p->user->name }}</td>
+                        <td class="py-2 px-4">{{ $p->book->judul }}</td>
+                        <td class="py-2 px-4">{{ $p->tanggal_peminjaman }}</td>
+                        <td class="py-2 px-4">{{ $p->tanggal_pengembalian }}</td>
+                        <td class="py-2 px-4">{{ $p->status }}</td>
+                        <td class="py-2 px-4">
+                            <form class="confirmForm" action="/dashboard/data-pinjaman/{{ $p->id }}" method="post">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="status" value="Sedang Dipinjam">
+                                @if ($p->status == 'Sedang Dipinjam')
+                                <button type="button" disabled class="confirmButton px-4 py-1 bg-green-600 text-white">Disetujui</button>   
+                                @else
+                                <button type="button" class="confirmButton px-4 py-1 bg-green-800 text-white hover:bg-green-600">Setujui</button>   
+                                @endif
+                            </form>
+                        </td>
+                    </tr> 
+                    @empty
+                    <tr>
+                        <td colspan="8" class="text-center bg-red-600 text-white font-bold py-4" colspan="8">Data Belum Ada</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.getElementById('confirmButton').addEventListener('click', function() {
-            Swal.fire({
-                title: 'Setujui peminjaman ini?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#14532d',
-                cancelButtonColor: '#991b1b',
-                confirmButtonText: 'Ya, setujui!',
-                cancelButtonText: 'Tidak'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    document.getElementById('confirmForm').submit();
-                }
+        const confirmButtons = document.querySelectorAll('.confirmButton');
+        confirmButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const form = this.closest('form');
+                Swal.fire({
+                    title: 'Setujui peminjaman ini?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#14532d',
+                    cancelButtonColor: '#991b1b',
+                    confirmButtonText: 'Ya, setujui!',
+                    cancelButtonText: 'Tidak'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
             });
         });
     </script>

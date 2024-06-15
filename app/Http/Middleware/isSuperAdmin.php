@@ -18,7 +18,6 @@ class isSuperAdmin
         if(auth()->user()->is_super_admin){
             return $next($request);
         }
-        abort(403,'Heiiii Mau Kemana');
-        
+        return redirect()->back()->with('error','Eitss mau kemana jangan macem macem😡!');        
     }
 }
