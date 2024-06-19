@@ -10,9 +10,9 @@
         <div class="hidden md:flex space-x-4 items-center justify-between w-[60%]">
             <div class=" ">
                 <x-nav-link href="/" :active="request()->is('/*')"><i class="fa-solid fa-house"></i> Beranda</x-nav-link>
-                <x-nav-link href="#" :active="request()->is('profile')"><i class="fa-solid fa-sitemap"></i> Profile</x-nav-link>
+                <x-nav-link href="/profile" :active="request()->is('profile')"><i class="fa-solid fa-sitemap"></i> Profile</x-nav-link>
                 <x-nav-link href="/books" :active="request()->is('books*')"><i class="fa-solid fa-book"></i> Galeri Buku</x-nav-link>
-                <x-nav-link href="#" :active="request()->is('aktivitas')"><i class="fa-solid fa-newspaper"></i> Aktivitas </x-nav-link>
+                <x-nav-link href="/aktivitas" :active="request()->is('aktivitas')"><i class="fa-solid fa-newspaper"></i> Aktivitas </x-nav-link>
             </div>
             <div class="w-auto ">
                 @auth

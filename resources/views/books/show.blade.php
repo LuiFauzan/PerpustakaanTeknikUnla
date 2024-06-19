@@ -1,7 +1,7 @@
 <x-layout-admin>
     <x-slot:title>{{ $title }}</x-slot:title>
     <div class="border bg-gray-100 p-3 flex gap-4 rounded-md">
-        {{-- <img src="{{ asset('storage/img/books/' . $book->gambar) }}" alt=""> --}}
+        <img src="{{ asset('storage/img/books/' . $book->gambar) }}" alt="">
         <img src="{{ $book->gambar }}" alt="">
         <div class="">
             <div class="font-semibold text-green-700 mt-2">

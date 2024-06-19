@@ -19,7 +19,12 @@
             </div>
             <div>
                 <label for="status" class="block text-sm font-medium text-gray-700">Status Laporan</label>
-                <input type="text" name="status" value="{{ $report->status }}" id="status" class="mt-1 block w-full text-sm text-gray-900 bg-gray-50 p-2 rounded-lg border border-gray-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" required>
+                <select name="status" class="mt-1 block w-full text-sm text-gray-900 bg-gray-50 p-2 rounded-lg border border-gray-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" id="status">
+                    <option value="">{{ $report->status }}</option>
+                    <option value="Ditolak">Ditolak</option>
+                    <option value="Disetujui">Disetujui</option>
+                    <option value="Sedang Ditinjau">Sedang Ditinjau</option>
+                </select>
             </div>
             <div>
                 <label for="comment" class="block text-sm font-medium text-gray-700">Komentar</label>

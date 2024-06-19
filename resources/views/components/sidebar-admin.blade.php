@@ -1,7 +1,7 @@
 <nav class="fixed top-0 z-50 w-full border-b bg-green-900 py-2 px-4 flex justify-between items-center">
     <div class="w-auto"><img src="/img/logo.png" width="60%" alt=""></div>
     <div class="w-auto relative" x-data="{isOpen:false}">
-        <img src="/img/default.png" class="w-14 md:w-12 cursor-pointer hover:outline outline-offset-1 hover:outline-gray-400 hover:outline-4 rounded-full" alt="" @click="isOpen = !isOpen">
+        <img src="/img/{{ auth()->user()->photo }}" class="w-14 md:w-12 cursor-pointer hover:outline outline-offset-1 hover:outline-gray-400 hover:outline-4 rounded-full" alt="" @click="isOpen = !isOpen">
         
         <div
         x-show="isOpen"
@@ -18,10 +18,12 @@
                     @endif
                 </div>
                 <hr class="border-b border-gray-300 mt-2">
-                <div class="grid grid-rows-3 gap-1">
-                    <a href="#" class="hover:bg-gray-200 py-2 px-4 rounded-md">Profile</a>
-                    <a href="#" class="hover:bg-gray-200 py-2 px-4 rounded-md">Change Password</a>
-                    <a href="#" class="hover:bg-gray-200 py-2 px-4 rounded-md">Change Photo</a>
+                <div class="grid grid-rows-1 gap-1">
+                    @if (auth()->user()->is_admin)    
+                    <a href="{{ route('admin.profile',Auth::user()->id) }}" class="hover:bg-gray-200 py-2 px-4 rounded-md">Profile</a>  
+                    @else
+                    <a href="{{ route('superadmin.profile',Auth::user()->id) }}" class="hover:bg-gray-200 py-2 px-4 rounded-md">Profile</a>  
+                    @endif
                     <hr class="border-b border-gray-300">
                     <form action="/logout" method="post">
                         @csrf

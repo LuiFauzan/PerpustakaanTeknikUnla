@@ -6,7 +6,7 @@
     <div class="mt-8 grid md:grid-cols-2 grid-rows-2 gap-1">
         <div class="border bg-gray-100 p-3 flex gap-4 rounded-s-md">
             <div class="">
-                {{-- <img src="/img/books/{{ $book->gambar }}" class="w-80 md:w-80" alt=""> --}}
+                <img src="/img/books/{{ $book->gambar }}" class="w-80 md:w-80" alt="">
                 <img src="{{ $book->gambar }}" class="w-80 md:w-80" alt="">
             </div>
             <div class="grid grid-rows-3 gap-1">
@@ -72,7 +72,7 @@
                 </form>
             </div>
             @else
-            <form action="/books" method="post" class="p-4">
+            <form action="/books" method="post" id="borrowForm" class="p-4">
                 @csrf
                 <h1 class="text-center font-bold text-2xl mb-4">ISI FORM PEMINJAMAN</h1>
                 
@@ -99,7 +99,7 @@
                 <input type="hidden" name="book_id" value="{{ $book->id }}">
                 
                 {{-- Submit button dengan event onclick untuk konfirmasi menggunakan confirm browser --}}
-                <input type="submit" name="submit" onclick="return confirm('Anda yakin ingin meminjam buku ini?')" id="borrowButton" value="BOOKING SEKARANG" class="border p-2 w-full bg-green-700 rounded-md text-white hover:bg-green-600">
+                <input type="button" id="borrowButton" value="BOOKING SEKARANG" class="border p-2 w-full bg-green-700 rounded-md text-white hover:bg-green-600">
             </form>
             
            @endif
@@ -108,5 +108,22 @@
     <div class="w-full text-center mt-10 md:mt-0">
         <a href="/books" class="text-2xl rounded-md border border-black hover:bg-slate-100 px-4 py-2"><i class="fa-solid fa-arrow-left"></i> KEMBALI</a>
     </div>
-   
+   <script>
+    document.getElementById('borrowButton').addEventListener('click', function() {
+    Swal.fire({
+        title: 'Anda ingin meminjam buku ini?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#14532d',
+        cancelButtonColor: '#991b1b',
+        confirmButtonText: 'Ya, kembalikan!',
+        cancelButtonText: 'Tidak'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('borrowForm').submit();
+        }
+    });
+});
+
+   </script>
 </x-layout>

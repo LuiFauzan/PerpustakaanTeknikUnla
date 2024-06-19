@@ -33,7 +33,7 @@
             @forelse ($books as $book)
                 <div class="border bg-gray-100 p-3 flex gap-2 rounded-md">
                     <div>
-                        {{-- <img src="/img/books/{{ $book->gambar }}" class="w-52" alt=""> --}}
+                        <img src="/img/books/{{ $book->gambar }}" class="w-52" alt="">
                         <img src="{{ $book->gambar }}" class="w-52" alt="">
                     </div>
                     <div>

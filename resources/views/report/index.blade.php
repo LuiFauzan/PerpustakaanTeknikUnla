@@ -23,13 +23,23 @@
                 <td >{{ $loop->iteration }}</td>
                 <td>{{ $book->judul_laporan }}</td>
                 <td>
-                    <a href="dokumen/{{ $book->file_laporan }}" download>
-                        <button type="button">Unduh</button>
+                    <a href="{{ route('download.pdf',$book->file_laporan) }}" download>
+                        <button type="button" class="text-blue-700">Unduh</button>
                     </a>
                 </td>                
-                <td>{{ $book->tanggal_laporan }}</td>
-                <td>{{ $book->status }}</td>
-                <td>{{ $book->comment }}</td>
+                <td>{{ $book->created_at->format('d-m-Y') }}</td>
+                <td>
+                    @if ($book->status == "Disetujui")
+                        <span class="text-white p-2 bg-green-700">{{ $book->status }}</span>
+                    @elseif($book->status == "Ditolak")
+                        <span class="text-white p-2 bg-red-700">{{ $book->status }}</span>
+                    @elseif($book->status == "Sedang Ditinjau")
+                        <span class="text-white p-2 bg-blue-700">{{ $book->status }}</span>
+                    @else
+                        <span class="text-white p-2 bg-slate-700">{{ $book->status }}</span>
+                    @endif
+                </td>
+                <td>{{ Str::limit($book->comment, 10) }}</td>
                 <td>
                     <div class="flex justify-center">
                         @if (auth()->user()->is_admin)

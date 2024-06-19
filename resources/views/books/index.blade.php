@@ -21,7 +21,7 @@
                 <td >{{ $loop->iteration }}</td>
                 <td>{{ $book->isbn }}</td>
                 <td>
-                    {{-- <img src="{{ asset('storage/img/books/'.$book->gambar) }}" class="mx-auto" width="50%" alt=""> --}}
+                    <img src="{{ asset('storage/img/books/'.$book->gambar) }}" class="mx-auto" width="50%" alt="">
                     <img src="{{ $book->gambar }}" class="mx-auto" width="50%" alt="">
                 </td>
                 <td>{{ $book->judul }}</td>

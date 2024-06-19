@@ -22,18 +22,16 @@
       
           <div class="mb-4">
             <label for="penerbit" class="block mb-2 text-sm font-medium text-gray-700">Penerbit</label>
-            <textarea name="penerbit" id="penerbit" cols="30" rows="10" class="block w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"value="{{ old('penerbit',$book->penerbit) }}" required></textarea>
+            <textarea name="penerbit" id="penerbit" cols="30" rows="10" class="block w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"value="{{ old('penerbit',$book->penerbit) }}" required>{{ $book->penerbit }}</textarea>
           </div>
-      
-          {{-- <div class="mb-4">
-            <label for="tag" class="block mb-2 text-sm font-medium text-gray-700">Tag/Kategori</label>
-            <input type="text" name="tag" id="tag" class="block w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
-          </div> --}}
+
       
           <div class="mb-4">
 
             <label for="gambar" class="block mb-2 text-sm font-medium text-gray-700" >Gambar Lama</label>
             <img src="{{ asset('storage/img/books/'.$book->gambar) }}" alt="">
+            <img src="{{ $book->gambar }}" class="mx-auto" width="50%" alt="">
+
             <label for="gambar" class="block mb-2 text-sm font-medium text-gray-700" >Gambar Baru</label>
             <input type="file" name="gambar" id="gambar" class="block w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500">
           </div>
