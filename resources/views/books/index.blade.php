@@ -31,11 +31,12 @@
                     <div class="flex justify-center">
                         <a href="/dashboard/books/{{ $book->id }}/edit" class="py-2 px-4  text-black rounded-md"><i class="fa-solid fa-file-pen"></i></a>
                         <a href="/dashboard/books/detail/{{ $book->id }}" class="py-2 px-4 text-black rounded-md"><i class="fa-solid fa-eye"></i></a>
-                        <form action="/dashboard/books/{{ $book->id }}" method="post">
+                        <form id="delete-form-{{ $book->id }}" action="/dashboard/books/{{ $book->id }}" method="post">
                             @csrf
                             @method('delete')
-                            <button type="submit" onclick="return confirm('Anda Yakin Mau Menghapus Buku Ini?')" class="py-2 px-4 text-black rounded-md"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" onclick="confirmDelete({{ $book->id }})" class="py-2 px-4 text-black rounded-md"><i class="fa-solid fa-trash"></i></button>
                         </form>
+                        
                     </div>
                 </td>
                 @empty
@@ -49,4 +50,23 @@
         </table>
         {{ $books->links('vendor.pagination.custom') }}
     </div>
+    <script>
+        function confirmDelete(bookId) {
+            Swal.fire({
+                title: 'Anda Yakin Mau Menghapus Buku Ini?',
+                text: "Anda tidak akan bisa mengembalikannya!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + bookId).submit();
+                }
+            })
+        }
+        </script>
+        
 </x-layout-admin>

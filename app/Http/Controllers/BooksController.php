@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-
+use App\Models\Borrowing;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Routing\Controller;
@@ -74,11 +74,28 @@ class BooksController extends Controller
         }
         return redirect()->route('books.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
-    public function destroy($id){
-        $book = Book::findOrFail($id);
-        Storage::delete('public/img/books'.$book->image);
-        $book->delete();
-        return redirect()->route('books.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    public function destroy($id) {
+        $borrowings = Borrowing::where('book_id', $id)->where(function($query) {
+            $query->where('status', 'Sedang Dipinjam')
+                  ->orWhere('status', 'Booking');
+        })->count();
+    
+        if ($borrowings > 0) {
+            // Buku sedang dipinjam, tidak bisa dihapus
+            return redirect()->back()->with(['error' => 'Buku sedang dipinjam dan tidak bisa dihapus']);
+        } else {
+            $book = Book::find($id);
+            
+            if ($book) {
+                // Hapus gambar jika ada
+                if ($book->image && Storage::exists('public/img/books/'.$book->image)) {
+                    Storage::delete('public/img/books/'.$book->image);
+                }
+                $book->delete();
+                return redirect()->route('books.index')->with(['success' => 'Buku Berhasil Dihapus!']);
+            } 
+        }
     }
+    
 
 }

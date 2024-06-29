@@ -9,7 +9,7 @@ use App\Http\Controllers\UserBooksController;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
-// Route::apiResource('books', CobaApiController::class);
-// Route::get('/books',[CobaApiController::class,'index']);
-// Route::apiResource('users', UsersApiController::class);
-// Route::get('/users',[UsersApiController::class,'index']);
+Route::apiResource('books', CobaApiController::class);
+Route::get('/books',[CobaApiController::class,'index']);
+Route::apiResource('users', UsersApiController::class);
+Route::get('/users',[UsersApiController::class,'index']);

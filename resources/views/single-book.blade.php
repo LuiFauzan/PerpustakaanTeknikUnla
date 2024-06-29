@@ -111,12 +111,12 @@
    <script>
     document.getElementById('borrowButton').addEventListener('click', function() {
     Swal.fire({
-        title: 'Anda ingin meminjam buku ini?',
+        title: 'Apakah anda ingin meminjam buku ini?',
         icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#14532d',
         cancelButtonColor: '#991b1b',
-        confirmButtonText: 'Ya, kembalikan!',
+        confirmButtonText: 'Ya',
         cancelButtonText: 'Tidak'
     }).then((result) => {
         if (result.isConfirmed) {
