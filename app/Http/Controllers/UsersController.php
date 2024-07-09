@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Borrowing;
 use App\Models\Pengembalian;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,10 +14,45 @@ use Illuminate\Support\Facades\Hash;
 class UsersController extends Controller
 {
     //
-    public function index(){
-        $users = User::latest()->paginate(10);
-        return view('data-pengguna',['title'=>'Halaman Admin - Data Pengguna','users'=>$users]);
+    public function index(Request $request)
+{
+    // Ambil query pencarian dari input 'search'
+    $search = $request->input('search');
+    
+    // Cek apakah ada permintaan untuk mengekspor ke PDF
+    if ($request->get('export') == 'pdf') {
+        // Ambil semua data pengguna dengan filter pencarian
+        $users = User::latest()
+                    ->where(function ($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%')
+                              ->orWhere('prodi', 'like', '%' . $search . '%')
+                              ->orWhere('npm', 'like', '%' . $search . '%');
+                    })
+                    ->get();
+
+        // Load view PDF dengan data pengguna
+        $pdf = PDF::loadView('pdf.user', ['users' => $users]);
+        
+        // Stream PDF ke browser dengan nama file 'Data Pengguna.pdf'
+        return $pdf->stream('Data Pengguna.pdf');
+    } else {
+        // Ambil semua data pengguna dengan filter pencarian dan paginate(10)
+        $users = User::latest()
+                    ->where(function ($query) use ($search) {
+                        $query->where('name', 'like', '%' . $search . '%')
+                              ->orWhere('prodi', 'like', '%' . $search . '%')
+                              ->orWhere('npm', 'like', '%' . $search . '%');
+                    })
+                    ->paginate(10);
+        
+        // Tampilkan halaman dengan hasil pencarian dan paginate
+        return view('data-pengguna', [
+            'title' => 'Halaman Admin - Data Pengguna',
+            'users' => $users,
+            'search' => $search // kirimkan kembali input pencarian untuk digunakan di tampilan
+        ]);
     }
+}
     public function formprofile($id){
         $user = User::findOrFail($id);
         return view('users.profile',['title'=>'Your Profile','user'=>$user]);

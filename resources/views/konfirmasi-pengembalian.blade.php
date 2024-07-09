@@ -2,8 +2,20 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
         <h1 class="text-2xl font-bold text-center mb-8">Konfirmasi Pengembalian</h1>
+        <div class="flex gap-2">    
+            {{-- <a href="/dashboard/books/create" class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md"><i class="fa-solid fa-plus"></i> Tambah Buku</a> --}}
+            <a href="{{ route('kembali.index') }}?export=pdf" class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md">Cetak Laporan <i class="fa-solid fa-file-pdf"></i></a>
+            {{-- <a href="/dashboard/books/create" class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md">Download PDF <i class="fa-solid fa-file-arrow-down"></i></a> --}}
+            {{-- <button class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md">Sort By <i class="fa-solid fa-circle-chevron-down"></i></button> --}}
+            <form action="" method="GET">
+                <div>
+                    <input type="search" name="search" class="py-2 px-4 border rounded-md border-black">
+                    <button type="submit" class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md">Cari</button>
+                </div>
+            </form>
+        </div>
         <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
+            <table class="min-w-full divide-y divide-gray-200 mt-4">
                 <thead class="bg-green-800 text-white">
                     <tr>
                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">No</th>

@@ -80,5 +80,18 @@ class ReportController extends Controller
             'report' => $report
         ]);
     }    
+    public function downloadPdf($filename)
+    {
+        // Lokasi file PDF, misalnya di dalam direktori storage/app/public/
+        $filePath = storage_path('app/public/' . $filename);
+    
+        // Periksa apakah file ada
+        if (!Storage::exists($filePath)) {
+            abort(404, 'File not found');
+        }
+    
+        // Mengirim file sebagai respons HTTP dengan nama file asli
+        return response()->download($filePath, $filename, ['Content-Type' => 'application/pdf']);
+    }
     
 }

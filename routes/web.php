@@ -49,18 +49,19 @@ Route::middleware(['checkLogin'])->group(function(){
         Route::get('/dashboard/profile/{id}',[AdminController::class,'formprofile'])->name('admin.profile');
         Route::put('/dashboard/profile/{id}/password', [AdminController::class, 'changePassword'])->name('changepassword');
         Route::put('/dashboard/profile/{id}/photo', [AdminController::class, 'changePhoto'])->name('changephoto');
-        Route::get('/dashboard/data-pinjaman', [DashboardBorrowController::class,'index']);
+        Route::get('/dashboard/data-pinjaman', [DashboardBorrowController::class,'index'])->name('borrow.index');
         Route::put('/dashboard/data-pinjaman/{id}', [DashboardBorrowController::class,'update']);
-        Route::get('/dashboard/data-pengguna', [UsersController::class,'index']);
+        Route::get('/dashboard/data-pengguna', [UsersController::class,'index'])->name('user.index');
         Route::get('/dashboard/users/create', [DashboardUsersController::class,'create']);
         Route::post('/dashboard/users/create', [DashboardUsersController::class,'store'])->name('user.store');
         Route::get('/dashboard/users/edit/{id}', [DashboardUsersController::class,'edit'])->name('user.edit');
         Route::put('/dashboard/users/edit/{id}', [DashboardUsersController::class,'update'])->name('user.update');
         Route::delete('/dashboard/data-pengguna/{id}', [DashboardUsersController::class,'destroy']);
-        Route::get('/dashboard/konfirmasi-pengembalian',[DashboardPengembalianController::class,'index']);
+        Route::get('/dashboard/konfirmasi-pengembalian',[DashboardPengembalianController::class,'index'])->name('kembali.index');
         Route::put('/dashboard/konfirmasi-pengembalian/{id}',[DashboardPengembalianController::class,'update']);
         // rourtes kelola buku
         Route::get('/dashboard/books', [BooksController::class, 'index'])->name('books.index');
+        // Route::get('/dashboard/books/view_pdf', [PDFController::class, 'index']);
         Route::get('/dashboard/books/create', [BooksController::class, 'create'])->name('books.create');
         Route::post('/dashboard/books', [BooksController::class, 'store']);
         Route::get('/dashboard/books/detail/{id}', [BooksController::class, 'show'])->name('books.show');
@@ -72,10 +73,11 @@ Route::middleware(['checkLogin'])->group(function(){
         Route::get('/dashboard/report/create',[ReportController::class,'create']);
         Route::get('/dashboard/report/detail/{id}',[ReportController::class,'show']);
         Route::post('/dashboard/report/store',[ReportController::class,'store'])->name('report.store');
-        Route::get('/download-pdf/{file}', [PDFController::class,'download'])->name('download.pdf');
+        Route::get('/download-pdf/{filename}', 'App\Http\Controllers\PdfController@downloadPdf')->name('download.pdf');
     });
     
     Route::middleware(['isSuperAdmin'])->group(function(){
+        // Route::get('/dashboard/su/',[AdminController::class,'index']);
         Route::get('/dashboard/su/profile/{id}',[AdminController::class,'formprofile'])->name('superadmin.profile');
         Route::put('/dashboard/su/profile/{id}/password', [AdminController::class, 'changePassword'])->name('changepassword');
         Route::put('/dashboard/su/profile/{id}/photo', [AdminController::class, 'changePhoto'])->name('changephoto');

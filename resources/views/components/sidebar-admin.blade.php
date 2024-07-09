@@ -40,14 +40,15 @@
         <h2 class="text-3xl font-bold text-white">List Menu</h2>
         <hr class="border-white border-2 my-3">
         <div class="grid grid-rows-6 gap-2">
-            <x-sidebar-link href="/dashboard" :active="request()->is('dashboard')"><i class="fa-solid fa-house"></i><span class="ml-2"> Dashboard</span></x-sidebar-link>
             @if (auth()->user()->is_admin)
+            <x-sidebar-link href="/dashboard" :active="request()->is('dashboard')"><i class="fa-solid fa-house"></i><span class="ml-2"> Dashboard</span></x-sidebar-link>
             <x-sidebar-link href="/dashboard/books" :active="request()->is('dashboard/books*')"><i class="fa-solid fa-book-bookmark"></i><span class="ml-2"> Data Buku</span></x-sidebar-link>
             <x-sidebar-link href="/dashboard/data-pinjaman" :active="request()->is('dashboard/data-pinjaman')"><i class="fa-solid fa-file-export"></i><span class="ml-2"> Data Pinjaman</span></x-sidebar-link>
             <x-sidebar-link href="/dashboard/konfirmasi-pengembalian" :active="request()->is('dashboard/konfirmasi-pengembalian')"><i class="fa-solid fa-file-import"></i><span class="ml-2"> Konfirmasi Pengembalian</span></x-sidebar-link>
             <x-sidebar-link href="/dashboard/data-pengguna" :active="request()->is('dashboard/data-pengguna')"><i class="fa-solid fa-users"></i><span class="ml-2"> Data Pengguna</span></x-sidebar-link>
             <x-sidebar-link href="/dashboard/buat-laporan" :active="request()->is('dashboard/buat-laporan')"><i class="fa-solid fa-pen-to-square"></i><span class="ml-2"> Buat Laporan</span></x-sidebar-link>
             @else
+            <x-sidebar-link href="/dashboard/su" :active="request()->is('dashboard/su')"><i class="fa-solid fa-house"></i><span class="ml-2"> Dashboard</span></x-sidebar-link>
             <x-sidebar-link href="/dashboard/acc-laporan" :active="request()->is('dashboard/acc-laporan')"><i class="fa-solid fa-square-check"></i><span class="ml-2"> Acc Laporan</span></x-sidebar-link>
             @endif
         </div>

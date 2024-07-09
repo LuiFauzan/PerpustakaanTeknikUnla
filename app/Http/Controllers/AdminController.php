@@ -17,16 +17,17 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $book = Book::count();
-        $user = User::count();
-        $borrow = Borrowing::count();
-        $kembali = Pengembalian::count();
-        return view('dashboard-admin',[
-            'title'=>'Admin Page',
-            'book'=>$book,
-            'borrow'=>$borrow,
-            'user'=>$user,
-            'kembali'=>$kembali,
+        $monthlyData = [45, 52, 38, 45, 19, 23, 2];
+        $monthLabels = ["Jan", "Feb", "Apr", "May", "Jun", "Jul", "Aug","Sep","Oct","Nov","Des"];
+    
+        return view('dashboard-admin', [
+            'title' => 'Dashboard Admin',
+            'book' => Book::count(),
+            'user' => User::count(),
+            'borrow' => Borrowing::count(),
+            'kembali' => Pengembalian::count(),
+            'monthlyData' => $monthlyData,
+            'monthLabels' => $monthLabels
         ]);
     }
     public function formprofile($id){

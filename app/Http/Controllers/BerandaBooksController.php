@@ -11,6 +11,7 @@ class BerandaBooksController extends Controller
     //
     public function index(){
         $books = Book::latest()->paginate(6);
+        
         return view('home',['title'=>'Halaman Beranda'],compact('books'));
     }
 }

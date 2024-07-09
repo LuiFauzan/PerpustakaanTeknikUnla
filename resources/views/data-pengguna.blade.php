@@ -2,7 +2,19 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <div>
         <h1 class="text-2xl font-bold text-center mb-8">DATA PENGGUNA</h1>
-        <a href="/dashboard/users/create" class="py-2 px-4 bg-green-500 text-white rounded-md"><i class="fa-solid fa-plus"></i> Tambah Pengguna</a>
+        <div class="flex gap-2">    
+            <a href="/dashboard/users/create" class="py-2 px-4 bg-green-500 text-white rounded-md"><i class="fa-solid fa-plus"></i> Tambah Pengguna</a>
+            {{-- <a href="/dashboard/books/create" class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md"><i class="fa-solid fa-plus"></i> Tambah Buku</a> --}}
+            <a href="{{ route('user.index') }}?export=pdf" class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md">View PDF <i class="fa-solid fa-file-pdf"></i></a>
+            {{-- <a href="/dashboard/books/create" class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md">Download PDF <i class="fa-solid fa-file-arrow-down"></i></a> --}}
+            {{-- <button class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md">Sort By <i class="fa-solid fa-circle-chevron-down"></i></button> --}}
+            <form action="" method="GET">
+                <div>
+                    <input type="search" name="search" class="py-2 px-4 border rounded-md border-black">
+                    <button type="submit" class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md">Cari</button>
+                </div>
+            </form>
+        </div>
         <table class="table-fixed border-collapse border border-green-500 w-full text-center mt-6">
            <thead class=" bg-green-800 text-white font-semibold">
             <tr>
