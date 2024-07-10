@@ -41,7 +41,7 @@
           <div id="chart"></div>
       </div>
   </div>
-  <script>
+  {{-- <script>
     var options = {
         chart: {
             height: 280,
@@ -70,6 +70,6 @@
 
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();
-</script>
+</script> --}}
 
 </x-layout-admin>

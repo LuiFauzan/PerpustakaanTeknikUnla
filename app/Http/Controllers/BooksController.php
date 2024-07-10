@@ -14,21 +14,26 @@ class BooksController extends Controller
     public function index(Request $request)
     {
         $query = Book::query();
-
+    
         if ($request->has('search')) {
             $search = $request->input('search');
             $query->where('penerbit', 'LIKE', "%{$search}%")
                   ->orWhere('penulis', 'LIKE', "%{$search}%")
                   ->orWhere('judul', 'LIKE', "%{$search}%");
         }
-
-        $books = $query->latest()->paginate(6);
-        if($request->get('export')=='pdf'){
-            $pdf = Pdf::loadView('pdf.books', ['books'=>$books]);
+    
+        // Check if export to PDF is requested
+        if ($request->get('export') == 'pdf') {
+            $books = $query->latest()->get(); // Fetch all books without pagination
+            $pdf = Pdf::loadView('pdf.books', ['books' => $books]);
             return $pdf->stream('Data Buku.pdf');
         }
+    
+        // Otherwise, paginate the results
+        $books = $query->latest()->paginate(6);
         return view('books/index', ['title' => 'Halaman Beranda'], compact('books'));
     }
+    
 
     public function create()
     {

@@ -4,7 +4,7 @@
         <h1 class="text-2xl font-bold text-center mb-8">Data Buku</h1>
         <div class="flex gap-2">    
             <a href="/dashboard/books/create" class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md"><i class="fa-solid fa-plus"></i> Tambah Buku</a>
-            <a href="{{ route('books.index') }}?export=pdf" class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md">View PDF <i class="fa-solid fa-file-pdf"></i></a>
+            <a href="{{ route('books.index') }}?export=pdf" class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md">Cetak Laporan <i class="fa-solid fa-file-pdf"></i></a>
             {{-- <a href="/dashboard/books/create" class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md">Download PDF <i class="fa-solid fa-file-arrow-down"></i></a> --}}
             {{-- <button class="py-2 px-4 bg-green-600 hover:bg-green-500 text-white rounded-md">Sort By <i class="fa-solid fa-circle-chevron-down"></i></button> --}}
             <form action="" method="GET">

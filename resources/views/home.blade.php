@@ -1,20 +1,20 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
     
-    <div class="relative">
+    <div class="relative flex justify-center ">
         <div x-data="{ slide: 0, totalSlides: 3 }" x-init="startSlideTimer">
-            <div class="overflow-hidden" style="height: 500px; display: flex; align-items: center;">
+            <div class="overflow-hidden mx-auto" style="height: 300px; width: 60%; display: flex; align-items: center; justify-content: center;">
                 <!-- Sesuaikan tinggi gambar di sini -->
                 <div class="flex transition-transform duration-1000 ease-in-out" :style="'transform: translateX(-' + slide * 100 + '%)'">
-                    <div class="w-full flex-shrink-0">
-                        <img src="img/image1.jpg" alt="Slide 1" class="w-full h-full">
-                        <!-- Gunakan w-full dan h-full untuk memastikan gambar tetap sesuai dengan tinggi container -->
+                    <div class="w-full flex-shrink-0 flex justify-center items-center">
+                        <img src="img/image1.jpg" alt="Slide 1" class="w-full h-full object-contain max-w-full max-h-full">
+                        <!-- Gunakan w-full, h-full, object-contain, max-w-full, dan max-h-full untuk memastikan gambar tetap sesuai dengan tinggi container tanpa terpotong -->
                     </div>
-                    <div class="w-full flex-shrink-0">
-                        <img src="img/image2.jpg" alt="Slide 2" class="w-full h-full">
+                    <div class="w-full flex-shrink-0 flex justify-center items-center">
+                        <img src="img/image2.jpg" alt="Slide 2" class="w-full h-full object-contain max-w-full max-h-full">
                     </div>
-                    <div class="w-full flex-shrink-0">
-                        <img src="img/image3.jpg" alt="Slide 3" class="w-full h-full">
+                    <div class="w-full flex-shrink-0 flex justify-center items-center">
+                        <img src="img/image3.jpg" alt="Slide 3" class="w-full h-full object-contain max-w-full max-h-full">
                     </div>
                 </div>
             </div>
@@ -25,6 +25,7 @@
             </div>
         </div>
     </div>
+    
 
     <div class="mt-10">
         <h1 class="text-center text-4xl font-bold text-green-700">BUKU <span class="font-medium text-blue-900">TERBARU</span></h1>

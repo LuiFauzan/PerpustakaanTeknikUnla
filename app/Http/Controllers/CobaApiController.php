@@ -13,7 +13,7 @@ class CobaApiController extends Controller
         // Buat instance Guzzle client
         $client = new Client();
         // Kirim permintaan GET ke API Google Books tanpa parameter pencarian
-        $response = $client->request('GET', 'https://www.googleapis.com/books/v1/volumes?q=informatika+filter=partials&key=AIzaSyDrKtgmNYlTmZNQ3mpp86l9xS651XqBxuQ');
+        $response = $client->request('GET', 'https://www.googleapis.com/books/v1/volumes?q=pikiran+filter=partials&key=AIzaSyDrKtgmNYlTmZNQ3mpp86l9xS651XqBxuQ');
         // Ambil isi respons
         $data = json_decode($response->getBody(), true);
         foreach($data['items'] as $item){

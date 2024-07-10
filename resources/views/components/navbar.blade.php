@@ -45,7 +45,7 @@
                     </div>
                 </div> 
                 @else 
-                <a href="#" class="px-4 py-2 bg-white text-green-600 border mx-4 text-sm border-white rounded-md hover:bg-slate-200" data-target="#modal-login"><i class="fa-solid fa-right-to-bracket"></i> MASUK</a>
+                <a href="#" class="px-4 py-2 bg-white text-green-600 border mx-4 text-sm border-white rounded-md hover:bg-slate-200" data-target="#modal-login"><i class="fa-solid fa-right-to-bracket"></i> Masuk</a>
                 <!-- Modal Login -->
 <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-950 rounded-lg shadow-lg p-8 max-w-md w-full text-center z-50 hidden" id="modal-login">
     <!-- Modal Content -->

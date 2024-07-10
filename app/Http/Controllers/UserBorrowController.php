@@ -49,10 +49,20 @@ class UserBorrowController extends Controller
             return redirect()->back()->with('error', 'Anda masih meminjam atau memesan buku lain, silakan kembalikan buku tersebut sebelum meminjam yang baru.');
         }
     
+        // Cek apakah buku sedang dipinjam
+        $bookBorrowed = Borrowing::where('book_id', $request->book_id)
+            ->whereIn('status', ['Sedang Dipinjam', 'Booking'])
+            ->exists();
+    
+        if ($bookBorrowed) {
+            return redirect()->back()->with('error', 'Buku sedang dipinjam, silakan pilih buku lain.');
+        }
+    
         // Jika tidak ada, lanjutkan dengan pembuatan peminjaman baru
         Borrowing::create($request->all());
         return redirect()->back()->with('success', 'Booking sukses, silakan tunggu konfirmasi dari admin!');
     }
+    
     
     
     
