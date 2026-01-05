@@ -13,13 +13,13 @@ class CobaApiController extends Controller
         // Buat instance Guzzle client
         $client = new Client();
         // Kirim permintaan GET ke API Google Books tanpa parameter pencarian
-        $response = $client->request('GET', 'https://www.googleapis.com/books/v1/volumes?q=pikiran+filter=partials&key=AIzaSyDrKtgmNYlTmZNQ3mpp86l9xS651XqBxuQ');
+        $response = $client->request('GET', 'https://www.googleapis.com/books/v1/volumes?q=cinta+filter=partials&key=AIzaSyDrKtgmNYlTmZNQ3mpp86l9xS651XqBxuQ');
         // Ambil isi respons
         $data = json_decode($response->getBody(), true);
         foreach($data['items'] as $item){
             $book = new Book();
             $book->judul = $item['volumeInfo']['title'];
-        
+
         // Mengambil ISBN-13 jika tersedia, jika tidak, gunakan ISBN-10
         $isbn = '';
         if (isset($item['volumeInfo']['industryIdentifiers'])) {
@@ -32,13 +32,13 @@ class CobaApiController extends Controller
                 }
             }
         }
-        
+
         // Jika tidak ada ISBN yang ditemukan, berikan angka random
         if (empty($isbn)) {
             $isbn = rand(1000000000000, 9999999999999);
         }
         $book->isbn = $isbn;
-        
+
         if (isset($item['volumeInfo']['authors'])) {
             $book->penulis = implode(', ', $item['volumeInfo']['authors']);
         } else {
@@ -46,13 +46,13 @@ class CobaApiController extends Controller
         }
         $book->penerbit = isset($item['volumeInfo']['publisher']) ? $item['volumeInfo']['publisher'] : 'Unknown';
         $book->gambar = $item['volumeInfo']['imageLinks']['thumbnail'] ?? ''; // Jika tidak ada gambar, gunakan string kosong
-        
+
         $book->save();
 
         }
         // Kembalikan data dalam bentuk JSON
         return response()->json(['message','Data Berhasil Ditambahkan']);
-    }                   
+    }
 
 
     public function store(Request $request)

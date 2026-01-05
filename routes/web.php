@@ -42,7 +42,7 @@ Route::middleware(['checkLogin'])->group(function(){
     Route::put('/user/profile/{id}/password', [UsersController::class, 'changePassword'])->name('changepassword');
     Route::put('/user/profile/{id}/photo', [UsersController::class, 'changePhoto'])->name('changephoto');
     Route::get('/user/list/{id}',[UsersController::class,'formlist']);
-    
+
     Route::middleware(['isAdmin'])->group(function(){
         Route::get('/dashboard',[AdminController::class,'index']);
         // Route::get('/dashboard',[SuperAdminController::class,'index']);
@@ -75,7 +75,7 @@ Route::middleware(['checkLogin'])->group(function(){
         Route::post('/dashboard/report/store',[ReportController::class,'store'])->name('report.store');
         Route::get('/download-pdf/{filename}', 'App\Http\Controllers\PdfController@downloadPdf')->name('download.pdf');
     });
-    
+
     Route::middleware(['isSuperAdmin'])->group(function(){
         // Route::get('/dashboard/su/',[AdminController::class,'index']);
         Route::get('/dashboard/su/profile/{id}',[AdminController::class,'formprofile'])->name('superadmin.profile');
